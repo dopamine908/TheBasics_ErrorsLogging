@@ -16,6 +16,9 @@ return [
     |
     */
 
+    /*
+     * .env 的 LOG_CHANNEL 可以調整要用哪一種形式 （填入底下）channels 的值
+     */
     'default' => env('LOG_CHANNEL', 'stack'),
 
     /*
@@ -48,7 +51,14 @@ return [
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
+            /**
+             * Laravel 會記錄所有級別大於或等於指定的嚴重性
+             * 從最低到最嚴重： debug, info, notice, warning, error, critical,  alert, emergency.
+             */
             'level' => 'debug',
+            /**
+             * 檔案最大保留天數
+             */
             'days' => 14,
         ],
 
