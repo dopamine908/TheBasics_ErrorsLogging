@@ -49,6 +49,7 @@ class Handler extends ExceptionHandler
 
     /**
      * Render an exception into an HTTP response.
+     * 渲染例外到 HTTP 回應
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
@@ -56,6 +57,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        /**
+         * 當Exceptiong是自己律定的類型的時候才執行
+         */
+        if ($exception instanceof CustomException) {
+            /**
+             * 回傳 500 錯誤 response
+             */
+            return response()->view('errors.custom', [], 500);
+        }
+
         return parent::render($request, $exception);
     }
 }
