@@ -9,6 +9,7 @@ class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
+     * 不該被回報的例外類型清單
      *
      * @var array
      */
@@ -28,12 +29,21 @@ class Handler extends ExceptionHandler
 
     /**
      * Report or log an exception.
+     * 回報或記錄一個例外
+     * report 方法用於記錄例外或發送它們到外部服務，像是 Bugsnag 或 Sentry
      *
      * @param  \Exception  $exception
      * @return void
      */
     public function report(Exception $exception)
     {
+        /**
+         * 當Exceptiong是自己律定的類型的時候才執行
+         */
+        if ($exception instanceof CustomException) {
+            //
+        }
+
         parent::report($exception);
     }
 
