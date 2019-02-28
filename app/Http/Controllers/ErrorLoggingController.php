@@ -24,4 +24,13 @@ class ErrorLoggingController extends Controller
             return false;
         }
     }
+
+    /**
+     * 回傳錯誤頁面
+     */
+    public function returnAbort() {
+        abort(404);
+        abort(403, 'test message');
+
+    }
 }
