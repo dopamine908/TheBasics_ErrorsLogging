@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mockery\Exception;
+use Illuminate\Support\Facades\Log;
 
 class ErrorLoggingController extends Controller
 {
@@ -32,5 +33,20 @@ class ErrorLoggingController extends Controller
         abort(404);
         abort(403, 'test message');
 
+    }
+
+    /**
+     * 新增訊息到Log
+     */
+    public function addLog() {
+        $message = 'test message';
+        Log::emergency($message);
+        Log::alert($message);
+        Log::critical($message);
+        Log::error($message);
+        Log::warning($message);
+        Log::notice($message);
+        Log::info($message);
+        Log::debug($message);
     }
 }
